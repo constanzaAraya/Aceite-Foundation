@@ -1,0 +1,3 @@
+         v 1.0.0 -> Sitio Aceite
+17/11/16 v 1.0.1 -> Adaptaci—n PHP7
+21/11/16 v 1.0.2 -> Incorporaci—n Foundation

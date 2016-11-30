@@ -1,0 +1,328 @@
+extends _layout.pug
+
+block title
+  title Test Foundation
+
+block content
+
+  //- HEADER
+  header
+    a(href="", title="Titulo")
+      h1 Titulo del sitio
+
+    nav
+      ul.menu
+        li.menu-text Simple menu
+        li.active
+          a(href="") Uno
+        li
+          a(href="") Dos
+        li
+          a(href="") Tres
+        li
+          a(href="") Cuatro
+
+  div.row
+    //- Encabezados
+    div.small-6.columns
+      section
+        h1 Encabezado H1
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+
+        h2 Encabezado H2
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+
+        h3 Encabezado H3
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+
+        h4 Encabezado H4
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+
+        h5 Encabezado H5
+        p.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+
+    //- Enlaces y botones
+    div.small-6.columns
+      section
+        h2 Enlaces & Botones
+
+        a Enlace Simple
+        br
+        a Enlace Dos Simple
+
+        div.row
+          div.small-9.columns
+            ul.menu
+              li
+                a Enlace Uno
+              li
+                a Enlace Dos
+              li
+                a Enlace Tres
+          
+          div.small-3.columns
+            ul.menu.vertical
+              li
+                a Enlace Uno
+              li
+                a Enlace Dos
+              li
+                a Enlace Tres
+
+        div.row
+          div.small-12.columns
+            a.button.button-radius Color Primario
+            a.secondary.button Color Secundario
+            a.disabled.button Deshabilitado
+            button.success.button(type="button") Guardar
+            button.alert.button(type="button") Borrar
+            button.warning.button(type="button") Advertencia
+
+          div.small-12.columns
+            a.hollow.button Color Primario
+            a.secondary.hollow.button Color Secundario
+            a.disabled.hollow.button Deshabilitado
+            button.success.hollow.button(type="button") Guardar
+            button.alert.hollow.button(type="button") Borrar
+            button.warning.hollow.button(type="button") Advertencia
+
+          div.small-12.columns
+            a.tiny.button Pequeñísimo
+            a.small.button Pequeño
+            a.button Normal
+            a.large.button Grande
+
+          div.small-12.columns
+            a.expanded.button Expandido
+            a.small.expanded.button Pequeño expandido
+
+          div.small-12.columns
+            div.button-group
+              a.button Grupo
+              a.button De
+              a.button Botones
+
+      section
+        div.slider(data-slider, data-initial-start="50")
+          span.slider-handle(data-slider-handle, role="slider", tabindex="1")
+          span.slider-fill(data-slider-fill)
+          input(type="hidden")
+
+        div.slider(data-slider, data-initial-start="50", data-initial-end="70")
+          span.slider-handle(data-slider-handle, role="slider", tabindex="1")
+          span.slider-fill(data-slider-fill)
+          span.slider-handle(data-slider-handle, role="slider", tabindex="1")
+          input(type="hidden")
+          input(type="hidden")
+
+        div.slider.disabled(data-slider, data-initial-start="50")
+          span.slider-handle(data-slider-handle, role="slider", tabindex="1")
+          span.slider-fill(data-slider-fill)
+          input(type="hidden")
+
+      section
+        div.switch
+          input.switch-input#switch1(type="checkbox", name="switch1")
+          label.switch-paddle(for="switch1")
+            span.show-for-sr Label
+
+        div.switch
+          input.switch-input#switch2(type="radio", name="switchGroup1")
+          label.switch-paddle(for="switch2")
+            span.show-for-sr Label
+
+        div.switch
+          input.switch-input#switch4(type="radio", name="switchGroup1", checked)
+          label.switch-paddle(for="switch4")
+            span.show-for-sr Label
+
+  div.row
+    div.small-6.columns
+      //- listas y tabs
+      section
+        h2 Listas & Tabs
+
+        ul#example-tabs.tabs(data-tabs)
+          li.tabs-title.is-active
+            a(href="#panel1", aria-selected="true") Lista No Ordenada
+
+          li.tabs-title
+            a(href="#panel2") Lista Ordenada
+
+          li.tabs-title
+            a(href="#panel3") Lista Definición
+
+        div.tabs-content(data-tabs-content="example-tabs")
+          div#panel1.tabs-panel.is-active
+            ul
+              li Primero
+              li Tercero
+              li Segundo
+
+          div#panel2.tabs-panel
+            ol
+              li Primero
+              li Segundo
+              li Tercero
+
+          div#panel3.tabs-panel
+            dl
+              dt Metropolitana
+              dd Santiago
+              dt Libertador Bernando
+              dd Rancagua
+
+      //- tablas
+      section
+        h2 Tablas
+
+        table
+          thead
+            tr
+              th Encabezado
+              th Encabezado
+              th Encabezado
+          tbody
+            tr
+              td Dato 1.1
+              td Dato 1.2
+              td Dato 1.3
+            tr
+              td Dato 2.1
+              td Dato 2.2
+              td Dato 2.3
+            tr
+              td Dato 3.1
+              td Dato 3.2
+              td Dato 3.3
+
+      //- Callout
+      section
+        h2 Paneles (Callout)
+        
+        div.callout
+          h3 .callout
+          p.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. 
+          a Enlace
+
+        div.callout.primary
+          h3 .callout.primary
+          p.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. 
+          a Enlace
+
+        div.callout.small
+          h3 .callout.small
+          p.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. 
+          a Enlace
+
+        div.callout.warning.large
+          h3 .callout.large
+          p.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. 
+          a Enlace
+
+    //- forms
+    div.small-6.columns
+      section
+        h2 Forms
+
+        form
+          div.row
+            div.small-6.columns
+              label
+                |Input Label
+                input(type="text", placeholder=".small-6.columns")
+
+              label
+                |Cu&aacute;nto?
+                input(type="number", value="50")
+
+              label
+                |Select
+                select
+                  option(value="Uno") Uno
+                  option(value="Dos") Dos
+                  option(value="Tres") Tres
+
+              label Password
+                input(type="password", aria-describedby="passHelper")
+              p#passHelper.help-text Tu password debe ...
+
+              label.button(for="fileUpload") Subir archivo
+              input#fileUpload.show-for-sr(type="file")
+
+            div.small-6.columns
+              label
+                |Input Label
+                input(type="text", placeholder=".small-6.columns")
+
+              label
+                textarea(placeholder="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", rows="5")
+
+              div.input-group
+                span.input-group-label
+                  i.fa.fa-eur(aria-hidden="true")
+                input.input-group-field(type="number")
+                div.input-group-button
+                  input.button(type="submit", value="Enviar")
+
+          div.row
+            div.small-12.columns
+              fieldset
+                legend Una Opcion
+                
+                input#pikachu(type="radio", name="pokemon", value="pikachu", required)
+                label(for="pikachu") Pikachu
+                
+                input#squirtle(type="radio", name="pokemon", value="squirtle")
+                label(for="squirtle") Squirtle
+                
+                input#bulbasaur(type="radio", name="pokemon", value="bulbasaur")
+                label(for="bulbasaur") Bulbasaur
+
+              fieldset
+                legend Varias Opciones
+                
+                input#check1(type="checkbox")
+                label(for="check1") Check1
+                
+                input#check2(type="checkbox")
+                label(for="check2") Check2
+                
+                input#check3(type="checkbox")
+                label(for="check3") Check3

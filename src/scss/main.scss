@@ -1,0 +1,21 @@
+@import 'foundation/settings';
+@import 'foundation/foundation';
+@import 'font-awesome/font-awesome';
+
+@include foundation-everything(false);
+
+header {
+  color: $black;
+  //background-color: map-get($foundation-palette, secondary);
+  h1, h2, h3, h4 {
+    color: $black;
+  }
+}
+
+body{
+  background-color: #F1FFFF;
+}
+
+.button-radius {
+  border-radius: 25px;
+}
