@@ -1,0 +1,7 @@
+         v 1.0.0 -> Sitio Aceite
+17/11/16 v 1.0.1 -> Adaptacion PHP7
+21/11/16 v 1.1.0 -> Incorporacion Foundation
+22/11/16 v 1.1.1 -> css Foundation
+24/11/16 v 1.2.0 -> adaptacion javascript
+29/11/16 v 1.2.1 -> reveal Foundation & javascript
+

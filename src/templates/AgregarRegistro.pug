@@ -1,0 +1,144 @@
+extends _layout.pug
+
+block include
+    .
+        <?php include 'lib/controles.php';?>
+
+block title
+    title Agregar Registro
+
+block content
+    
+
+    .
+        <?php if (!$_POST){
+            if (isset($_GET['id']) && $_GET['id'] != ""){			
+                $id = $_GET['id'];
+
+                //Conexión a la base de datos
+                $mysqli = new mysqli('localhost',$DBUSER, $DBPASS, $DATABASE);
+                if ($mysqli -> connect_errno) {	die( "Fallo la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error); exit;}
+                
+                $central=$mysqli->query('SELECT descripcion FROM tbl_central WHERE idCentral='.$id);
+                $row_central=$central->fetch_assoc();
+        ?>
+    header
+      h3(align="center") Agregar Nuevo Informe   
+        .
+            <?php
+                echo $row_central['descripcion'];
+            ?> 
+
+    div(class="small-9 small-centered columns")
+        div(align="center" class="small-10 small-centered columns")
+            .
+                <?php $consulta_motor = $mysqli->query ('
+                    SELECT Codigo, idMotor, Marca, Modelo
+                    FROM tbl_motor
+                    WHERE idCentral ='.$id);		
+                 $nfilas_motor = $consulta_motor->num_rows;
+                    
+                 $consulta_prov = $mysqli->query ('
+                  SELECT Nombre,idProveedor
+                  FROM tbl_proveedor
+                 ');		
+                 $nfilas_prov = $consulta_prov->num_rows;
+                ?>
+
+        br
+        br
+        
+        form(action="AgregarRegistro.php" method="post")
+            div.row
+                table(align="center")
+                    tr
+                        th Informe
+                        td
+                            input(type="text" name="Informe" size="30" required)                            
+                        th Proveedor
+                        td
+                            select(name="Prov" required)
+                                option(value="" selected) Selecciona Proveedor
+                                    .
+                                        <?php for ($i=0; $i<$nfilas_prov; $i++){
+                                            $fila_prov = $consulta_prov->fetch_assoc();
+                                            echo '<option value="'.$fila_prov["idProveedor"].'">'.$fila_prov["Nombre"].'</option>';
+                                        } 
+                                        ?>
+                    tr
+                        th Motor
+                        td
+                            select(name="Motor" required)
+                                option(value="" selected) Selecciona Motor
+                                    .
+                                        <?php for ($i=0; $i<$nfilas_motor; $i++){
+                                          $fila_motor = $consulta_motor->fetch_assoc();
+                                          echo '<option value="'.$fila_motor["idMotor"].'">'.$fila_motor["Codigo"].'</option>';
+                                         }
+                                        ?>
+                        th Producto
+                        td
+                            input(type="text" name="Producto" size="30" required)
+                    tr
+                        th Horómetro Máquina
+                        td
+                            input(type="text" name="Horo1" size="30" required)
+                        th Horómetro Producto
+                        td
+                            input(type="text" name="Horo2" size="30" required)
+                    tr
+                        th Fecha Toma de Muestra
+                        td
+                            input(type="date" name="Fecha1" size="30" required)
+                        th Fecha Entrega de Informe
+                        td
+                            input(type="date" name="Fecha2" size="30" required)
+                        
+                br
+                br
+            
+                div.panel.clearfix(align="center")
+                    span.meter
+                        input.success.button(name="agregar" type="submit" onclick="Test()" value="Agregar")
+                        input.button(type="button" value="Volver" onclick="window.location='index.php';")
+            
+    .
+        <?php mysqli_close($mysqli);
+         }
+         else{ //ERROR: ingreso erroneo 
+            header("Location: index.php");
+            die();
+         }
+        }
+        else{ 
+            //HACER ALGO
+            $nombre = $_POST["Informe"];
+            $fecha1 = $_POST["Fecha1"];
+            $fecha2 = $_POST["Fecha2"];
+            $motor = $_POST["Motor"];
+            $prod = $_POST["Producto"];
+            $prov = $_POST["Prov"];
+            $horo1 = $_POST["Horo1"];
+            $horo2 = $_POST["Horo2"];
+        
+            $mysqli = new mysqli('localhost',$DBUSER, $DBPASS, $DATABASE);
+            if ($mysqli -> connect_errno) {	die( "Fallo la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error); exit;}	
+ 
+            $consulta = $mysqli->query('
+              INSERT INTO tbl_analisis (Nombre, Producto, FechaAnalisis, FechaMuestra, idMotor, idProveedor, HorometroMaquina, HorometroProducto) 
+              VALUES ("'.$nombre.'","'.$prod.'","'.$fecha2.'","'.$fecha1.'",'.$motor.','.$prov.','.$horo1.','.$horo2.')
+            ');        		
+            
+            if ($consulta>0){
+                echo '<script>alert("Se ha publicado con éxito.")</script>';
+                echo '<script>location.href="index.php"</script>';
+            }
+            else { 
+                echo '<script>alert("ERROR: no se ha podido publicar. vuelva a intentarlo nuevamente"</script>';
+            }
+            mysqli_close($mysqli);
+        ?>
+
+    div(align="center")
+        input(type="button" class="button" value="Volver" onclick="window.location='index.php';")
+    <?php } ?>                  

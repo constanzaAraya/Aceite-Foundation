@@ -1,0 +1,61 @@
+@import 'foundation/settings';
+@import 'foundation/foundation';
+@import 'font-awesome/font-awesome';
+@include foundation-everything(false);
+header {
+    //color: cadetblue;
+    //background-color: aliceblue;
+    height: 10%;
+    //background-color: map-get($foundation-palette, secondary);
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: cadetblue;
+    }
+}
+
+body {
+    //background-color: snow;
+    height: 100%;
+}
+
+#contenido {
+    height: 85%;
+}
+
+footer {
+    background-color: aliceblue;
+    color: black;
+    height: 5%;
+}
+
+.button-radius {
+    border-radius: 10px;
+    background-color: dodgerblue;
+}
+
+.btn1 {
+    border-radius: 10px;
+    background-color: dodgerblue;
+}
+
+.pop {
+    height: 18rem;
+    width: 25rem;
+}
+
+.frm {
+    width: 100%;
+    height: 90%;
+}
+
+.t1 {
+    width: 70%;
+    border: 2px solid;
+    border-color: cadetblue;
+}
+
+.hide {
+    background-color: black;
+}
