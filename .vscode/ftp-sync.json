@@ -1,8 +1,7 @@
-
 {
     "remotePath": "/Aceite",
-    "host": "192.168.11.63",
-    "username": "cony",
+    "host": "192.168.11.73",
+    "username": "caraya",
     "password": "enor123.",
     "port": 21,
     "protocol": "ftp",
