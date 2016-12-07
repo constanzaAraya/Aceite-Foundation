@@ -4,4 +4,5 @@
 22/11/16 v 1.1.1 -> css Foundation
 24/11/16 v 1.2.0 -> adaptacion javascript
 29/11/16 v 1.2.1 -> reveal Foundation & javascript
+07/12/16 v 1.2.2 -> Foundation & javascript
 
