@@ -80,7 +80,10 @@
                         $contador++;
                       } 
                       echo '</table></div>';
-                      echo '<div align="center" class="small-12 column"><input class="button" type="button" onclick="Graficar();" id="BGraficar" value="Graficar" /></div>';
+                      echo '<div align="center" class="small-12 column"><input class="button" type="button" onclick="Graficar();" id="BGraficar" value="Graficar" />
+                      <input type="button" name="select" onclick="selectAll()" class="button" value="Marcar Todo">
+                      <input type="button" name="select" onclick="cleanAll()" class="button" value="Limpiar">
+                      </div>';
                     } 
                     else{
                         echo '<div>No hay análisis asociados al motor seleccionado!</div>';
@@ -106,8 +109,8 @@
            echo '<input type="button" value="Volver" onclick="window.location=index.php;return true;" />';
        }
       ?>   
-      
     </div>
+
     <script type="text/javascript">
       var idCentral;
       document.cookie = "CidMotor=0";
@@ -159,6 +162,22 @@
           }				
           return false;
       }	
+    </script>
+    <script>
+     function selectAll(){
+       if ($('.selectall').click()) {
+            $('.checkbox').each(function(){
+                this.checked = true;
+            })
+        } 
+     } 
+     function cleanAll(){
+       if ($('.cleanAll').click()) {
+            $('.checkbox').each(function(){
+                this.checked = false;
+            })
+        }
+     }
     </script>
     <script src="assets/js/vendor/what-input.js"></script>
     <script src="assets/js/vendor/foundation.min.js"></script>

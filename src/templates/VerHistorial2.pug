@@ -52,7 +52,7 @@ block content
                  echo "data.addColumn('string', 'Numero de Analisis');";
                 
                  for ($i=0; $i<$nfilas3; $i++){
-                    $fila3 = $consulta3->fetch_assoc();
+                    $fila3 = $consulta3->fetch_array();
 
                     //Columnas para el gráfico
                     echo "data.addColumn('number','".$fila3["item"]."');";

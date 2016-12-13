@@ -12,14 +12,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet" type="text/css">
     <link href="assets/css/main.min.css" rel="stylesheet" type="text/css">
     <script src="assets/js/vendor/jquery-3.1.1.min.js"></script>
-    <script src="https://www.google.com/jsapi"></script>
   </head>
   <body>
     <header>
       <h1 align="center">Ingresa datos </h1>
     </header><br>
     <?php
-    if (!$_POST) {
+     if (!$_POST) {
        if (isset($_GET['id1']) && $_GET['id1'] != ""){
          $idAnalisis = $_GET['id1'];
          

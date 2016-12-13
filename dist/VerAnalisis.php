@@ -13,6 +13,20 @@
     <link href="assets/css/main.min.css" rel="stylesheet" type="text/css">
     <script src="assets/js/vendor/jquery-3.1.1.min.js"></script>
     <script src="https://www.google.com/jsapi"></script>
+    <script>
+      var frame = document.getElementById('ifrm');
+      var close_modal=$('.close-button','#modal1');
+      function guardar_salir(){ console.log('closed');
+          close_modal.click();
+          frame.removeChild(frame);
+          /*$('.close-button').click(function(){
+            console.log('close');
+            var frame = document.getElementById('ifrm');
+            frame.parentNode.removeChild(frame);
+            $('.close-button','#modal1').click();
+          });*/
+      }
+    </script>
   </head>
   <body>
     <?php $mysqli = new mysqli('localhost',$DBUSER, $DBPASS, $DATABASE);
@@ -26,8 +40,9 @@
             if($Item!='' and $Valor!='' and $Analisis!=''){	
               $consultaInsert = $mysqli->query ("
                INSERT INTO tbl_itemsanalisis (idAnalisis, idItem, Valor) 
-               VALUES (".$Analisis.", ".$Item.", ".$Valor.")");
-              if($consultaInsert>0){ echo "<script>var ingreso=$consultaInsert;</script>"; }
+               VALUES (".$Analisis.", ".$Item.", ".$Valor.")");              
+              if($consultaInsert>0){ echo "<script>guardar_salir();</script>"; }
+              else{echo "Problemas al ingreasar registro!";}
             }  
          }
     
@@ -87,7 +102,7 @@
           ');
           $nfilas2 = $consulta2->num_rows;
         ?><br>
-        <table class="stack" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <table class="tab" width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <?php $contador = 1; 
                while($fila2 = $consulta2->fetch_assoc()){ 
@@ -130,7 +145,7 @@
             echo '<div class="row"><div><h3>ERROR: INGRESO INCORRECTO</h3></div></div>';
           }
        }
-      
+       
        //cerrar sesión en BD
        mysqli_close($mysqli);
       ?>
@@ -148,16 +163,13 @@
               popup.open();
               $('#ifrm').attr('src', $url);
           });
-          var ingreso; 
-          if(ingreso){console.log('cerrar reveal');
-          $('.close-button').click();
-          //var popups = new Foundation.Reveal($('#modal1'));
-          //popups.close();
-          //$('#modal1').trigger('reveal:close');
-          }
+          /*//<input type="button" id="ingreso" value="Cancelar" onclick="guardar_salir()">
+          function guardar_salir(){
+            $('.close-button','#modal1').click();
+          }*/
         </script>
       </div>
-    </div>
+    </div>    
     <script src="assets/js/vendor/what-input.js"></script>
     <script src="assets/js/vendor/foundation.min.js"></script>
     <script>$(document).foundation();</script>

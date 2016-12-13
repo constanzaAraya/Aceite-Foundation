@@ -52,57 +52,53 @@
           $nfilas3 = $consulta3->num_rows;
           if ($nfilas3>0){
               echo '<script type="text/javascript">';
-              echo "google.load('visualization', '1.1', {packages: ['corechart', 'line']});";
-              echo 'google.setOnLoadCallback(drawChart);';
-              echo 'function drawChart() {';
-               echo 'var data = new google.visualization.DataTable();';	
-               echo "data.addColumn('string', 'Numero de Analisis');";
+                echo "google.load('visualization', '1.1', {packages: ['corechart', 'line']});";
+                echo 'google.setOnLoadCallback(drawChart);';
+                echo 'function drawChart() {';
+                echo 'var data = new google.visualization.DataTable();';	
+                echo "data.addColumn('string', 'Numero de Analisis');";
               
-               for ($i=0; $i<$nfilas3; $i++){
-                  $fila3 = $consulta3->fetch_assoc();
+                for ($i=0; $i<$nfilas3; $i++){
+                    $fila3 = $consulta3->fetch_array();
+                    //Columnas para el gráfico
+                    echo "data.addColumn('number','".$fila3["item"]."');";
+                    
+                    for ($j=0; $j<$nfilas4; $j++){ //se sabe que el resultado de SQL tiene tantas columnas como analisis
+                        //Se almacenarán los valores en la consulta SQl de forma traspuesta para luego graficar
+                        $resultados[$j][$i]= $fila3[$j+1];
+                    }
+                }
       
-                  //Columnas para el gráfico
-                  echo "data.addColumn('number','".$fila3["item"]."');";
-                  
-                  for ($j=0; $j<$nfilas4; $j++){ //se sabe que el resultado de SQL tiene tantas columnas como analisis
-                      //Se almacenarán los valores en la consulta SQl de forma traspuesta para luego graficar
-                      $resultados[$j][$i]= $fila3[$j+1];
-                  }
-               }
-      
-               //datos para el gráfico
-               echo 'data.addRows([';
-               for ($i=0; $i<$nfilas4; $i++){
-                  //echo '['.($i+1).',';
-                  echo "['".$analisis[$i]."',";
-                  for ($j=0; $j<$nfilas3; $j++){
-                      $valor = number_format($resultados[$i][$j],2,".","");
-                      echo ($valor!="")? $valor:'0';
-                      echo ($j+1<$nfilas3) ? "," : "";
-                  }
-                  echo ($i+1<$nfilas4) ? "]," : "]";
-               }
-               echo ']);';
+                //datos para el gráfico
+                echo 'data.addRows([';
+                for ($i=0; $i<$nfilas4; $i++){
+                    //echo '['.($i+1).',';
+                    echo "['".$analisis[$i]."',";
+                    for ($j=0; $j<$nfilas3; $j++){
+                        $valor = number_format($resultados[$i][$j],2,".","");
+                        echo ($valor!="")? $valor:'0';
+                        echo ($j+1<$nfilas3) ? "," : "";
+                    }
+                    echo ($i+1<$nfilas4) ? "]," : "]";
+                }
+                echo ']);';
       ?>
-               var options = {
-                legend: { position: 'top' },
-                vAxis: { format:'decimal',minValue:0}
-               };
-      
-          <?php
-              //echo "var chart = new google.charts.Line(document.getElementById('chart_div'));";
-              echo "var chart = new google.visualization.LineChart(document.getElementById('chart_div'));";
-              echo 'chart.draw(data, options);';
-            echo '}';
+                var options = {
+                  legend: { position: 'top' },
+                  vAxis: { format:'decimal',minValue:0}
+                };        
+            <?php
+                //echo "var chart = new google.charts.Line(document.getElementById('chart_div'));";
+                echo "var chart = new google.visualization.LineChart(document.getElementById('chart_div'));";
+                echo 'chart.draw(data, options);';
+              echo '}';
             echo '</script>';
            }
           ?>   
       
     </div>
     <div id="chart_div" style="height: 330px;border:1px gray solid;pading:5px">
-      <?php
-       mysqli_close($mysqli);	
-      ?>
+      <?php mysqli_close($mysqli); ?>
     </div>
     <script src="assets/js/vendor/what-input.js"></script>
     <script src="assets/js/vendor/foundation.min.js"></script>
